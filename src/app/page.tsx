@@ -2,23 +2,21 @@ import Link from "next/link";
 
 
 export default async function Home() {
-  const url =await fetch("https://simple-books-api.glitch.me/books")
+
+  const url =await fetch(`https://jsonplaceholder.typicode.com/posts`)
   const res =await url.json()
   console.log(res)
-  return (
-
+return (
   <div>
-    {
-      res.map( (book:any ) =>(
-        <div>
-          <Link href={`${book.id}`}>
-            <h1 className="text-5xl">{book.id}. {book.name}</h1>
+     {
+    res.map( (post:any, index:number ) =>(
+      <div key={index}>
+        <Link href={`${post.id}`}>
+          <h1 className="text-2xl">{post.id}. {post.title}</h1>
           </Link>
-            <p className="text-4xl">{book.type}</p><br />
-           
-        </div>
-      ) )
-    }
+      </div>
+    ) )
+  }
   </div>
-  );
+)
 }

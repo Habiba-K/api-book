@@ -1,12 +1,28 @@
 import React from 'react'
 
-const DynamicBook = (props:any) => {
-    console.log(props)
+const DynamicBook = async (props:any) => {
+const url =await fetch(`https://jsonplaceholder.typicode.com/posts/${props.params.id}`)
+  const res =await url.json()
+  console.log('singlebookresponse',res)
+  const commentsRes = await fetch(`https://jsonplaceholder.typicode.com/comments?postId=${props.params.id}`);
+  const comments = await commentsRes.json();
+  console.log(comments)
   return (
     <div>
-      <h1 className='text-7xl'>{props.params.id}</h1>
+      <h1 className='text-4xl'>{props.params.id}. {res.title} <br />
+      </h1>
+        <p className='pl-7 pt-5'>{res.body} <br /></p>
+        <h2>Comments</h2>
+      <ul>
+        {comments.map((comment:any) => (
+          <li key={comment.id}>
+            <strong>{comment.id}.  {comment.email}</strong>: <br /> {comment.body}
+          </li>
+        ))}
+      </ul>
     </div>
+    
   )
+  
 }
-
 export default DynamicBook
