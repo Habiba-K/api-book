@@ -8,9 +8,11 @@ export default async function Home() {
   console.log(res)
 return (
   <div>
+    <h1 className='text-5xl mb-5 text-center'>POSTS</h1>
      {
     res.map( (post:any, index:number ) =>(
       <div key={index}>
+          
         <Link href={`${post.id}`}>
           <h1 className="text-2xl">{post.id}. {post.title}</h1>
           </Link>

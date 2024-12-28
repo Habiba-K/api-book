@@ -9,10 +9,11 @@ const url =await fetch(`https://jsonplaceholder.typicode.com/posts/${props.param
   console.log(comments)
   return (
     <div>
+
       <h1 className='text-4xl'>{props.params.id}. {res.title} <br />
       </h1>
         <p className='pl-7 pt-5'>{res.body} <br /></p>
-        <h2>Comments</h2>
+        <h2 className='text-2xl mt-2 mb-2'>Comments</h2>
       <ul>
         {comments.map((comment:any) => (
           <li key={comment.id}>
